@@ -4,7 +4,15 @@
   "main": "server.js",
   "author": "Zorgai",
   "license": "MIT",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "cd client && yarn start",
+    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
+    "heroku-postbuild": "cd client && YARN_PRODUCTION=true yarn && yarn run build"
+  },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
     "express": "^4.17.1",
     "express-validator": "^6.4.0",
