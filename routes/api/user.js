@@ -19,7 +19,7 @@ const User = require("../../models/User");
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
-
+  console.log(email)
   try {
     // See if user exists
     let user = await User.findOne({ email });
