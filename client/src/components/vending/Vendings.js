@@ -76,7 +76,7 @@ const Vendings = ({ getVendings, vending: { vendings, loading } }) => {
                     onChange={v => setRegion(v.value)}
                   />
                   </div>
-                      <div className="col-2"> <button className="btn" onClick={handleShow}>ADD</button></div>
+                      <div className="col-2"> <button className="btn">ADD</button></div>
                   </div>
                 </h4>
                 <div className="basic-form">
