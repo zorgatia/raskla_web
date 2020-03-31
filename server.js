@@ -8,11 +8,12 @@ connectDB();
 app.use(express.json({ extended: false}));
 
 
-const auth_admin = require('./middleware/auth_admin')
 
-app.use('/api/user',auth_admin,require('./routes/api/user'))
-app.use('/api/auth',auth_admin,require('./routes/api/auth'))
-app.use('/api/product',auth_admin,require('./routes/api/product'))
+
+app.use('/api/user',require('./routes/api/user'))
+app.use('/api/auth',require('./routes/api/auth'))
+app.use('/api/product',require('./routes/api/product'))
+app.use('/api/vending',require('./routes/api/vending'))
 
 
 app.use('/mob/auth',require('./routes/mob/auth'))
