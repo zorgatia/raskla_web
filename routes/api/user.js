@@ -19,15 +19,13 @@ const User = require("../../models/User");
 
 router.post("/", async (req, res) => {
   const { email, password } = req.body;
-  console.log(email)
+  console.log(req.body)
   try {
     // See if user exists
     let user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({ errors: [{ msg: "User already exists" }] });
     }
-
-
     const username = email.replace(/@.*$/, "");
     
     user = new User({
