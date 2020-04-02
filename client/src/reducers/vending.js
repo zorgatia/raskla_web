@@ -1,4 +1,10 @@
-import { GET_VENDINGS, VENDING_ERROR, ADD_VENDING, SET_VENDING, REMOVE_VENDING } from "../actions/types";
+import {
+  GET_VENDINGS,
+  VENDING_ERROR,
+  ADD_VENDING,
+  SET_VENDING,
+  REMOVE_VENDING
+} from "../actions/types";
 
 const initialState = {
   vendings: [],
@@ -16,17 +22,21 @@ export default function(state = initialState, action) {
         vendings: payload,
         loading: false
       };
-
+    case ADD_VENDING:
+      return {
+        ...state,
+        vendings: [...state.vendings,payload],
+      };
     case SET_VENDING:
       return {
         ...state,
         vending: payload
-      }
+      };
     case REMOVE_VENDING:
       return {
         ...state,
         vending: null
-      }
+      };
     case VENDING_ERROR:
       return {
         ...state,

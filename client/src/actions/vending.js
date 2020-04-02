@@ -43,23 +43,27 @@ export const removeVending = () => async dispatch => {
   });
 };
 
-export const addVending = (idPlage, num) => async dispatch => {
+export const addVending = (
+  numero,
+  model,
+  region,
+  lat,
+  lng
+) => async dispatch => {
   try {
     const config = {
       headers: {
         "Content-Type": "Application/json"
       }
     };
-    console.log("dis1");
-    const body = JSON.stringify({ num });
-    const res = await axios.post(`api/vending/${idPlage}`, body, config);
 
-    console.log(res);
+    const body = JSON.stringify({ numero, model, region, lat, lng });
+    const res = await axios.post(`api/vending`, body, config);
+
     dispatch({
       type: ADD_VENDING,
       payload: res.data
     });
-    console.log("dis3");
   } catch (err) {
     dispatch({
       type: VENDING_ERROR,

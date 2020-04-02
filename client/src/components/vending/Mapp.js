@@ -12,17 +12,18 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
     // console.log(vendings)
     getVendings();
     
-  }, [getVendings]);
-  const [searchB, setSearchB] = useState("");
+  }, []);
+
+  /* const [searchB, setSearchB] = useState("");
   const onChange = e => {
     setSearchB(e.target.value);
-  };
+  }; 
   const onSubmit = e => {
     e.preventDefault();
     const vending = vendings.find(b=>b.num===searchB);
     console.log(vending)
     
-  };
+  };*/
   const [center,setCenter] = useState({
     lat: 36.81897,
     lng: 10.16579
@@ -37,7 +38,7 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
     console.log(vending)
     setMarkers(map, maps);
     if(vending){
-      map.panTo({lat:vending.lat,lng:vending.lng})
+      map.panTo({lat:vending.loc.lat,lng:vending.loc.lng})
       removeVending()
     }
     
@@ -46,7 +47,7 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
   const setMarkers = (map, maps) => {
     const image = {
       url:
-        "https://res.cloudinary.com/orange-odc/image/upload/v1568969768/utils/vending_2_rckag0.png",
+        "https://res.cloudinary.com/ebniecolo/image/upload/c_scale,w_20/v1585837788/vending_bh0iq9.png",
       // This marker is 20 pixels wide by 32 pixels high.
       size: new maps.Size(32, 32),
       // The origin for this image is (0, 0).
@@ -60,13 +61,12 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
     };
     vendings.forEach(b => {
       //  console.log('asd')
-      // console.log(b)
+       console.log(b)
       const marker = new maps.Marker({
-        position: { lat: b.lat, lng: b.lng },
+        position: { lat: b.loc.lat, lng: b.loc.lng },
         map: map,
         icon: image,
-
-        title: "test",
+        title: b.number,
         zIndex: 10
       });
       marker.addListener("click", function() {
@@ -85,15 +85,7 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
       <div className="content-body">
         <div className="container">
           <div>
-            <form onSubmit={e => onSubmit(e)}>
-              <input
-                type="text"
-                name="searchB"
-                value={searchB}
-                onChange={e => onChange(e)}
-              />
-              <input type="submit"></input>
-            </form>
+            
           </div>
           <div style={{ height: "100vh", width: "100%" }}>
             <GoogleMapReact
@@ -109,7 +101,7 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
     </Fragment>
   );
 };
-Nap.propTypes = {
+Mapp.propTypes = {
   getVendings: PropTypes.func.isRequired,
   vending: PropTypes.object.isRequired
 };
@@ -121,4 +113,4 @@ const mapStateToProp = state => ({
 export default connect(
   mapStateToProp,
   { getVendings }
-)(Nap);
+)(Mapp);

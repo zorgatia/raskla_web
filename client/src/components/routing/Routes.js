@@ -10,12 +10,13 @@ import NotFound from "../layout/NotFound"
 import Swal from "../layout/Swal"
 import Profile from "../profile/Profile"
 
-import Nap from '../buoy/Nap'
+
 import Members from "../member/Members"
 
 import Buoys from "../buoy/Buoys";
 import EcoSys from '../buoy/EcoSys'
 import Vendings from "../vending/Vendings";
+import Mapp from "../vending/Mapp";
 
 
 
@@ -34,7 +35,7 @@ const Routes = () => {
 
 
 
-                <PrivateRoute exact path="/map" component={Nap} />
+                <PrivateRoute exact path="/map" component={Mapp} />
                 <PrivateRoute exact path="/collaborators" component={Members} />
                 <PrivateRoute exact path="/buoys" component={Buoys} />
                 <PrivateRoute exact path="/ecosys" component={EcoSys} />

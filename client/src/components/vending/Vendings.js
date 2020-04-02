@@ -6,8 +6,10 @@ import Spinner from "../layout/Spinner";
 import Select from "react-select";
 import { getVendings } from "../../actions/vending";
 import { connect } from "react-redux";
+import AddVending from "./AddVending";
 
 const options = [
+  { value: "All", label: "All" },
   { value: "Tunis", label: "Tunis" },
   { value: "Ariana", label: "Ariana" },
   { value: "Ben Arous", label: "Ben Arous" },
@@ -39,26 +41,7 @@ const Vendings = ({ getVendings, vending: { vendings, loading } }) => {
     getVendings();
   }, [loading]);
 
-  const [region, setRegion] = useState({ value: "Tunis" });
-
-  function groupBy(list, keyGetter) {
-    const map = new Map();
-    list.forEach(item => {
-      // console.log(item)
-      const key = keyGetter(item);
-      //  console.log(key)
-      const collection = map.get(key);
-      if (!collection) {
-        map.set(key, [item]);
-      } else {
-        collection.push(item);
-      }
-    });
-    let r = [];
-    map.forEach((v, k) => r.push({ k, v }));
-    console.log(r);
-    return r;
-  }
+  const [region, setRegion] = useState("All");
 
   return loading ? (
     <Spinner />
@@ -71,12 +54,16 @@ const Vendings = ({ getVendings, vending: { vendings, loading } }) => {
               <div className="card-body">
                 <h4 className="card-title">
                   <div className="row">
-                      <div className="col-10"><Select
-                    options={options}
-                    onChange={v => setRegion(v.value)}
-                  />
-                  </div>
-                      <div className="col-2"> <button className="btn">ADD</button></div>
+                    <div className="col-10">
+                      <Select
+                        options={options}
+                        onChange={v => setRegion(v.value)}
+                        defaultValue={{ value: "All", label: "All" }}
+                      />
+                    </div>
+                    <div className="col-2">
+                      <AddVending></AddVending>
+                    </div>
                   </div>
                 </h4>
                 <div className="basic-form">
@@ -94,7 +81,7 @@ const Vendings = ({ getVendings, vending: { vendings, loading } }) => {
                       <tbody>
                         {vendings.map(
                           vending =>
-                            vending.region === region && (
+                            (region === "All" || vending.region === region) && (
                               <VendingItem
                                 key={vending._id}
                                 vending={vending}
