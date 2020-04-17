@@ -7,9 +7,9 @@
   "scripts": {
     "start": "node server",
     "server": "nodemon server",
-    "client": "cd client && yarn start",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\"",
-    "heroku-postbuild": "cd client && YARN_PRODUCTION=false yarn && yarn run build"
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=flase npm install --prefix client && npm run build --prefix client"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
