@@ -3,28 +3,27 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DataSchema = new Schema({
-    user:{
+    user:{ // user ili habet taswira 
         type:Schema.ObjectId, 
         ref:"user"
     },
-    path:{
+    image:{ // path imta3 taswira
         type: String,
     },
-    product:{
-        type:Schema.ObjectId, 
-        ref:"product"
+    product:{ // type (plastic,can,glass)
+        type:String,
     },
-    votes: [{
-        user:{
+    votes: [{ // liste imta3 les votes 
+        user:{  // user ili vota
             type:Schema.ObjectId, 
             ref:"user"
         },
-        vote:{
+        vote:{ // vote imte3oou
             type:String,
             enum:['YES','NO']
         }
     }],
-    date:{
+    date:{ // waktech tba3thit
         type:Date,
         default: Date.now
     }

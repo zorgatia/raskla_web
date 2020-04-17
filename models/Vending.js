@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 const VendingSchema = new Schema({
-  numero: {
+  numero: { // numero imta3mekina uniq za3ma za3ma id imta makina na5tarou ena
     type: String
   },
-  model: {
+  model: { // mana3ch ich bech na3milbeha fil parti admin
     type: String
   },
   status: {
@@ -13,10 +13,13 @@ const VendingSchema = new Schema({
     enum: ["ON", "OFF", "FULL"],
     default: "OFF"
   },
-  region: {
+  region: { // Tunsi,Sousse,Nabel ......
     type: String
   },
-  loc: {
+  adress:{ // exple Geant Tunis, Carfour Maraa , monoprix menzeh6
+    type:String
+  },
+  loc: { // ta3rafha geoloc
     lat: {
       type: Number
     },
@@ -24,7 +27,7 @@ const VendingSchema = new Schema({
       type: Number
     }
   },
-  vends: [
+  vends: [ //les vend il sasou fil nmakina
     {
       type: Schema.ObjectId,
       ref: "vend"

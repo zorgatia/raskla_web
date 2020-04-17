@@ -3,35 +3,38 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-    username: {
-        type:       String,
-        
+    username: { // genere mil email imta3 user 
+        type: String,
     },
-    email: {
+    email:{  // he4a ili  ya3mil bih login
         type: String,
         required: true,
         unique: true
     },
-    password: {
+    password: { // password
         type: String,
-        required: true,
+        //required: true,
         //enum:['$2y$10$30Hw5RkvzRcSnqQrf8GIiuBvbDkVmEiy/pkmT3g/uJ/DXeRb3ffd2'] // remouve
     },
-    birthday:{
+    birthday:{ //date naissance (option)
         type: Date,
     },
 
-    vends:[{
+    credit:{ // 9adech 3andou floussss
+        type:Number
+    },
+
+    vends:[{  // les vends ili a3malhom 
         type:Schema.ObjectId, 
         ref:"vend"
     }],
    
-    role:{
+    role:{ // juste lil ena lilp arti site web
         type: String,
         enum: ['USER','ADMIN'],  // remouve when rand
         default: 'USER'
     },
-    comfirmed:{
+    comfirmed:{ // tawhiya mahtou true ken tesha9ha fil 5idma koli
         type: Boolean,
         default: true
     },
