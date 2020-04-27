@@ -10,8 +10,8 @@ import Top from "./Top";
 
 const Dashboard = ({
   getCurrentProfile,
-  auth: { user },
-  profile: { profile, loading }
+  auth: { user,loading },
+  
 }) => {
 
     const [region, setRegion] = useState('Tunis')
@@ -19,7 +19,7 @@ const Dashboard = ({
     getCurrentProfile();
   }, []);
 
-  return loading && profile === null ? (
+  return loading && user === null ? (
     <Spinner />
   ) : (
     <Fragment>

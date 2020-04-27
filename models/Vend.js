@@ -3,19 +3,25 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const VendSchema = new Schema({
-    user: {
+    user: { // user ili a3mal vend
         type: Schema.ObjectId,
         ref: 'user',
         childPath:'vend'   
     },
-    vending:{
+    vending:{ // makina ili a3malfeha vends
         type: Schema.ObjectId,
         ref: 'vending',
         childPath:'vend'
     },
-    products:[{
-        type: Schema.ObjectId,
-        ref: 'product'
+    qr:{type:String}, // qr code ili nech tsajlou makina imba3d ki tab3athli qrcode wel user nafek user fih
+    
+    products:[{ // les produit ili hathom fil machina
+        product:{
+            type:String,
+        },
+        image:{
+            type:String
+        }
     }],
     date:{
         type: Date,

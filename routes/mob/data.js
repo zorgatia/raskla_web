@@ -11,7 +11,7 @@ const User = require('../../models/User');
 // @desc    Get Last Time Post Data
 // @access  Private
 
-router.get('/',auth,async(req,res)=>{
+router.get('/',async(req,res)=>{
     try {
         let data= await Data.find({user:req.user.id},{},{data:1})
         const diff = Math.abs(new Date() - new Date(data.date));
@@ -26,7 +26,7 @@ router.get('/',auth,async(req,res)=>{
 // @route   POST mob/data
 // @desc    Send Photo To Data
 // @access  Private
-router.post('/',auth,async(req,res)=>{
+router.post('/',async(req,res)=>{
     try {
         const {path,product} = req.body
         const user = await User.findById(req.user.id)
@@ -53,7 +53,7 @@ router.post('/',auth,async(req,res)=>{
 // @route   PUT mob/data
 // @desc    Vote Data Photo
 // @access  Private
-router.put('/',auth,async(req,res)=>{
+router.put('/'  ,async(req,res)=>{
     try {
         const data= await Data.findById(req.body.data)
         if(!data)

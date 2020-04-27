@@ -19,6 +19,7 @@ const UserSchema = new Schema({
     birthday:{ //date naissance (option)
         type: Date,
     },
+    
 
     credit:{ // 9adech 3andou floussss
         type:Number

@@ -18,6 +18,7 @@ app.use('/api/vending',require('./routes/api/vending'))
 app.use('/mob/auth',require('./routes/mob/auth'))
 app.use('/mob/user',require('./routes/mob/user'))
 app.use('/mob/data',require('./routes/mob/data'))
+app.use('/mob/vending',require('./routes/mob/vending'))
 
 if(process.env.NODE_ENV === 'production'){
     //set static folder
