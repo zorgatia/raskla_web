@@ -7,7 +7,12 @@ const app = express();
 connectDB();
 
 app.use(express.json({ extended: false}));
-
+app.use(function(req,res,next){
+	
+	res.header ("Access-Control-Allow-Origin","*");
+	res.header("Access-Control-Allow-Headers","Origin, X Requested-with, Content-Type,Accept");
+	next();
+})
 
 app.use('/api/user',require('./routes/api/user'))
 app.use('/api/auth',require('./routes/api/auth'))

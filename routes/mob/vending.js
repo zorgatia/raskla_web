@@ -65,7 +65,7 @@ router.get("/loc", async (req, res) => {
 });
 
 // @route   Get mob/vending/location
-// @desc    Get All vendings
+// @desc    Get vending machine by id
 // @access  Public
 router.get("/:id", async (req, res) => {
   try {
