@@ -19,8 +19,22 @@ const UserSchema = new Schema({
     birthday:{ //date naissance (option)
         type: Date,
     },
-    
 
+    firstname:{
+        type:String
+    },
+    lastname:{
+        type:String
+    },
+    state:{
+        type:String
+    },
+    gender:{
+        type:String
+    },
+    image:{
+        type:String
+    },
     credit:{ // 9adech 3andou floussss
         type:Number
     },
