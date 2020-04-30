@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const Vending = require("../../models/Vending");
+const Vend = require("../../models/Vend");
+const User = require("../../models/User");
 
 const haversine_distance = (mk1, mk2) => {
 
@@ -58,6 +60,31 @@ router.get("/loc", async (req, res) => {
     //console.log(vendings);
 
     res.json(vendings);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("server error");
+  }
+});
+
+
+// @route   Get mob/vending/loc
+// @desc    Get All vendings by location
+// @access  Public
+router.post("/qr", async (req, res) => {
+  try {
+    const { id, qr } = req.body;
+
+    let user = await User.findById(id)
+    let vend = await Vend.findOne({qr:qr})
+    if(!user) return res.status(404).json({error:"user not found"})
+    if(!vend) return res.status(404).json({error:"vend not found qr error"})
+    vend.qr=null
+    vend.user=user
+    vend=vend.save();
+    user.credit=user.credit+vend.products.length*0.25
+    user.vends.push(vend)
+    user= user.save();
+    res.json(user);
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");

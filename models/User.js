@@ -33,10 +33,12 @@ const UserSchema = new Schema({
         type:String
     },
     image:{
-        type:String
+        type:String,
+        default:"https://res.cloudinary.com/ebniecolo/image/upload/v1566554496/users/default.jpg"
     },
     credit:{ // 9adech 3andou floussss
-        type:Number
+        type:Number,
+        default:0
     },
 
     vends:[{  // les vends ili a3malhom 

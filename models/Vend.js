@@ -30,6 +30,5 @@ const VendSchema = new Schema({
    
 });
 
-VendSchema.plugin(relationship, { relationshipPathName:['user','vending'] });
 
 module.exports = Vend = mongoose.model('vend',VendSchema);

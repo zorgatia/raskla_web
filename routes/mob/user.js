@@ -152,37 +152,32 @@ router.delete("/:id",  async (req, res) => {
 });
 
 */
-/*
+
 // @route   PUT api/user/profile
 // @desc    delete profile ,user & posts
 // @access  Private
-router.put("/profile", auth, async (req, res) => {
+router.put("/:id", async (req, res) => {
   const {
-    dateNaissance,
-    adress,
-    region,
-    cite,
-    zip,
-    nom,
-    prenom,
+    lastname,
+    firstname,
+    username,
+    birthday,
+    state,
+    gender,
     image
   } = req.body;
 
-  const newAddress = {
-    adress,
-    region,
-    cite,
-    zip
-  };
-
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.params.id);
 
-    user.nom = nom;
-    user.prenom = prenom;
-    user.dateNaissance = dateNaissance;
-    user.adress = newAddress;
+    user.lastname = lastname;
+    user.firstname = firstname;
+    user.username = username;
+    user.birthday = birthday;
+    user.state = state;
+    user.gender = gender;
     user.image = image;
+
     await user.save();
     res.json(user);
   } catch (err) {
@@ -190,7 +185,7 @@ router.put("/profile", auth, async (req, res) => {
     res.status(500).send("server error");
   }
 });
-
+/*
 // @route   PUT api/user/follow
 // @desc    put follow on plage
 // @access  Private
