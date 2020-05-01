@@ -50,6 +50,22 @@ router.post("/", async (req, res) => {
 
 
 
+// @route   GET web/user/me
+// @desc    Get current users
+// @access  Private
+
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id).populate({path:"vends",options:{sort:{"date":-1}}});
+    if (!user) {
+      return res.status(400).json({ msg: "There is no user" });
+    }
+    res.json(user.vends);
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 
 

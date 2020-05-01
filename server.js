@@ -18,6 +18,7 @@ app.use('/api/user',require('./routes/api/user'))
 app.use('/api/auth',require('./routes/api/auth'))
 app.use('/api/product',require('./routes/api/product'))
 app.use('/api/vending',require('./routes/api/vending'))
+app.use('/api/vend',require('./routes/api/vend'))
 
 
 app.use('/mob/auth',require('./routes/mob/auth'))

@@ -12,17 +12,17 @@ const Vending = require('../../models/Vending');
 router.post('/',async(req,res)=>{
     try {
         const {numero,qr,products}=req.body
-        const vending = Vending.findOne({numero:numero})
+        let vending = await Vending.findOne({numero:numero})
         if(!vending) return res.status(404).json({msg:"error vending"})
-        console.log(products)
+        
         const newVend = new Vend({
            vending:vending,
            qr:qr,
            products:products
        });
-       const vend = newVend.save()
+       const vend = await newVend.save()
        vending.vends.push(vend)
-       vending.save();
+       await vending.save();
        res.json(vend)
     } catch (err) {
         console.error(err.message);

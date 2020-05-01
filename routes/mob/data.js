@@ -11,12 +11,16 @@ const User = require('../../models/User');
 // @desc    Get Last Time Post Data
 // @access  Private
 
-router.get('/',async(req,res)=>{
+router.get('/:id',async (req,res)=>{
     try {
-        let data= await Data.find({user:req.user.id},{},{data:1})
+        /*
+        let data= await Data.findOne({user:req.params.id},{},{date:1})
+        if(!data) return res.json(0);
         const diff = Math.abs(new Date() - new Date(data.date));
         const minutes = Math.floor((diff/1000)/60);
-        return res.json(60-minutes)
+        return res.json(60-minutes)*/
+        let data = await Data.find({'user':{$ne:req.params.id},'votes.user':{$nin:[req.params.id]}})
+        return res.json(data)
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
@@ -26,15 +30,18 @@ router.get('/',async(req,res)=>{
 // @route   POST mob/data
 // @desc    Send Photo To Data
 // @access  Private
-router.post('/',async(req,res)=>{
+router.post('/:id',async(req,res)=>{
     try {
         const {path,product} = req.body
-        const user = await User.findById(req.user.id)
-        let data= await Data.findOne({user:req.user.id},{},{data:1})
-        const diff = Math.abs(new Date() - new Date(data.date));
-        const minutes = Math.floor((diff/1000)/60);
-        if(data &&  minutes<60){
+        const user = await User.findById(req.params.id)
+        let data= await Data.findOne({user:req.params.id},{},{date:1})
+        let minutes = 61
+        if(data) {
+            const diff = Math.abs(new Date() - new Date(data.date));
+            minutes = Math.floor((diff/1000)/60);
             
+        }
+        if(minutes<60){
             return res.json(60-minutes)
         }
         data=new Data()
@@ -55,11 +62,20 @@ router.post('/',async(req,res)=>{
 // @access  Private
 router.put('/'  ,async(req,res)=>{
     try {
-        const data= await Data.findById(req.body.data)
-        if(!data)
-            return res.status(404).json({msg:"data not Found"})
-        data.yes.some(u=>u.id==req.id)
-        
+        const user = await User.findById(req.body.user)
+        if(!user) return res.json("user errur")
+
+        const votes = req.body.votes
+        console.log(votes)
+        votes.forEach( async v => {
+            const data= await Data.findById(v.data)
+            console.log(data)
+            if(data){
+                data.votes.push({user:user,vote:v.vote})
+                data.save()
+            }
+        }); 
+        res.json(user)
 
     } catch (err) {
         console.error(err.message);

@@ -20,7 +20,7 @@ const DataSchema = new Schema({
         },
         vote:{ // vote imte3oou
             type:String,
-            enum:['YES','NO']
+            
         }
     }],
     date:{ // waktech tba3thit
@@ -28,4 +28,4 @@ const DataSchema = new Schema({
         default: Date.now
     }
 });
-module.exports = Data = mongoose.model('data',DataSchema);
+module.exports = Data = mongoose.model('datas',DataSchema);
