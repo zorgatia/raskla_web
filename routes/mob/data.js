@@ -66,10 +66,10 @@ router.put('/'  ,async(req,res)=>{
         if(!user) return res.json("user errur")
 
         const votes = req.body.votes
-        console.log(votes)
+        
         votes.forEach( async v => {
             const data= await Data.findById(v.data)
-            console.log(data)
+            
             if(data){
                 data.votes.push({user:user,vote:v.vote})
                 data.save()
