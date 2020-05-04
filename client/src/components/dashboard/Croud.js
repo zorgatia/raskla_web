@@ -3,12 +3,12 @@ import Axios from "axios";
 import Spinner from "../layout/Spinner";
 import CountUp from "react-countup";
 
-const Top = props => {
+const Croud = props => {
   const [data, setData] = useState({ users: 0, vendings: 0, vends: 0 });
   const [load, setLoad] = useState(true);
   useEffect(() => {
     const loadData = async () => {
-      const response = await Axios.get(`/api/user/dash`);
+      const response = await Axios.get(`/api/data/croud`);
       console.log(response.data)
       setData(response.data);
       setLoad(false);
@@ -63,6 +63,6 @@ const Top = props => {
   );
 };
 
-Top.propTypes = {};
+Croud.propTypes = {};
 
-export default Top;
+export default Croud;

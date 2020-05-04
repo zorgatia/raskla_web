@@ -39,14 +39,14 @@ const options = [
 const AddVending = ({ plage, addVending }) => {
   const [show, setShow] = useState(false);
   const [formData, setFormData] = useState({
-    numero: "",
     model: "",
     region: "",
+    adress:"",
     lat: "",
     lng: ""
   });
 
-  let { numero, model, region, lat, lng } = formData;
+  let { model, region,adress, lat, lng } = formData;
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -57,7 +57,7 @@ const AddVending = ({ plage, addVending }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addVending(numero, model, region, lat, lng);
+    addVending( model, region,adress, lat, lng);
     handleClose();
   };
 
@@ -108,12 +108,13 @@ const AddVending = ({ plage, addVending }) => {
               onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
             ></GoogleMapReact>
           </div>
+         
           <br/>
           <input
-          placeholder="Machine Serial Number"
+          placeholder="Adress"
             type="text"
-            name="numero"
-            value={numero}
+            name="adress"
+            value={adress}
             onChange={e => onChange(e)}
           />
           <br/>
@@ -122,6 +123,7 @@ const AddVending = ({ plage, addVending }) => {
             options={options}
             onChange={v => setFormData({ ...formData, region: v.value })}
           />
+          
 
           
         </Modal.Body>

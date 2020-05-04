@@ -10,9 +10,9 @@ const SideBar = () => {
             <div className="brand-logo">
               <Link to="/dashboard">
                 <img
-                  src="Lamparalogo.png"
+                  src="logo.png"
                   alt=""
-                  style={{ maxWidth: "150px", marginTop: "-2px" }}
+                  style={{ maxWidth: "220px", marginTop: "-2px" }}
                 />
               </Link>
             </div>
@@ -36,33 +36,9 @@ const SideBar = () => {
                 <span className="nav-text">Vending Machine</span>
               </Link>
             </li>
-            <li>
-              <Link to="/beaches">
-                <i className=" mdi mdi-view-dashboard" />{" "}
-                <span className="nav-text">Beaches</span>
-              </Link>
-            </li>
+           
 
-            <li>
-              <Link to="/ecosys">
-                <i className=" mdi mdi-view-dashboard" />{" "}
-                <span className="nav-text">EcoSystem</span>
-              </Link>
-            </li>
-
-            <li className="nav-label">Profile</li>
-            <li>
-              <Link to="/profile">
-                <i className=" mdi mdi-view-dashboard" />{" "}
-                <span className="nav-text">My Profile</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/collaborators">
-                <i className=" mdi mdi-view-dashboard" />{" "}
-                <span className="nav-text">Collaborators</span>
-              </Link>
-            </li>
+            
           </ul>
         </div>
       </div>

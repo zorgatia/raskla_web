@@ -87,13 +87,25 @@ router.get("/:id", async (req, res) => {
 // @access  Private
 router.post("/", async (req, res) => {
   try {
+    
+    const {model, region,adress, lat, lng} = req.body
+    let test=true
+    let numero="0";
+    while(test){
+      numero = "RM-M1-"+region.substr(0,2).toUpperCase()+"-N"+Math.floor(Math.random() * Math.floor(1000));
+      let ress=await Vending.find({numero:numero})
+      if(ress.length===0)test=false
+    }
+    
+
     const newVending = new Vending({
-      numero: req.body.numero,
-      model: req.body.model,
-      region: req.body.region,
+      numero: numero,
+      model: model,
+      region: region,
+      adress: adress,
       loc: {
-        lat: req.body.lat,
-        lng: req.body.lng
+        lat: lat,
+        lng: lng
       }
     });
     const vending = await newVending.save();

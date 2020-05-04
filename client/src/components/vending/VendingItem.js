@@ -6,7 +6,7 @@ const VendingItem = ({setVending,vending}) => {
     return (
         <tr>
             <td>{vending.numero}</td>
-            <td>{vending.model}</td>
+            <td>{vending.adress}</td>
             <td>{vending.status}</td>
             <td>{vending.vends.length}</td>
             <td><Link to="/map" onClick={e=>setVending(vending)}>Track</Link></td>

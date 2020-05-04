@@ -34,9 +34,9 @@ const Login = ({ login, isAuthenticated }) => {
                   <div className="card-body">
                     <div className="logo text-center">
                       <img
-                        src="Lamparalogo.png"
+                        src="logo.png"
                         alt=""
-                        style={{ width: "200px", height: "auto" }}
+                        style={{ width: "400px", height: "auto" }}
                       />
                     </div>
                     <br></br>

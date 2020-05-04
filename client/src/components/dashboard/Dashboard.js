@@ -7,6 +7,7 @@ import { getCurrentProfile } from "../../actions/profile";
 import Pipep from "./Pipep";
 import Linee from "./Linee";
 import Top from "./Top";
+import Croud from "./Croud";
 
 const Dashboard = ({
   getCurrentProfile,
@@ -33,22 +34,10 @@ const Dashboard = ({
             </div>
           </div>
           <Top></Top>
-          <div className="row">
-            <div className="col-lg-6">
-              <div className="card">
-                <div className="card-body">
-                  <Pipep setRegion={setRegion}></Pipep>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-6">
-              <div className="card">
-                <div className="card-body">
-                  <Linee region={region}></Linee>
-                </div>
-              </div>
-            </div>
-            </div>
+          <br></br>
+          <br></br>
+          <br></br>
+         
         </div>
       </div>
     </Fragment>

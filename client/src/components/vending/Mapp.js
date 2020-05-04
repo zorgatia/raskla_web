@@ -45,9 +45,29 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
     
   };
   const setMarkers = (map, maps) => {
-    const image = {
+    const image_red = {
       url:
-        "https://res.cloudinary.com/ebniecolo/image/upload/c_scale,w_20/v1585837788/vending_bh0iq9.png",
+        "https://res.cloudinary.com/dov1qarzt/image/upload/c_scale,w_32,h_32/v1588608161/red_xdahzn.png",
+      // This marker is 20 pixels wide by 32 pixels high.
+      size: new maps.Size(32, 32),
+      // The origin for this image is (0, 0).
+      origin: new maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 32).
+      anchor: new maps.Point(0, 32)
+    };
+    const image_orange = {
+      url:
+        "https://res.cloudinary.com/dov1qarzt/image/upload/c_scale,w_32,h_32/v1588608161/orange_adfb5w.png",
+      // This marker is 20 pixels wide by 32 pixels high.
+      size: new maps.Size(32, 32),
+      // The origin for this image is (0, 0).
+      origin: new maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 32).
+      anchor: new maps.Point(0, 32)
+    };
+    const image_green = {
+      url:
+        "https://res.cloudinary.com/dov1qarzt/image/upload/c_scale,w_32,h_32/v1588608161/green_pozqek.png",
       // This marker is 20 pixels wide by 32 pixels high.
       size: new maps.Size(32, 32),
       // The origin for this image is (0, 0).
@@ -65,13 +85,13 @@ const Mapp = ({ getVendings, vending: { vendings,vending, loading } }) => {
       const marker = new maps.Marker({
         position: { lat: b.loc.lat, lng: b.loc.lng },
         map: map,
-        icon: image,
+        icon: b.status==="OFF"?image_red:b.status==="FULL"?image_orange:image_green,
         title: b.number,
         zIndex: 10
       });
       marker.addListener("click", function() {
         const infowindow = new maps.InfoWindow({
-          content: b.status,
+          content: "Adress: "+b.adress,
           maxWidth: 200
         });
         infowindow.open(map, marker);

@@ -72,7 +72,7 @@ const Vendings = ({ getVendings, vending: { vendings, loading } }) => {
                       <thead>
                         <tr>
                           <th scope="col">Serial Number</th>
-                          <th scope="col">Model</th>
+                          <th scope="col">Adress</th>
                           <th scope="col">Status</th>
                           <th scope="col">Nb Vends</th>
                           <th scope="col">Action</th>

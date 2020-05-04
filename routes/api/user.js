@@ -8,9 +8,11 @@ const config = require("config");
 const bcrypt = require("bcryptjs");
 
 
-const auth = require("../../middleware/auth");
+
 
 const User = require("../../models/User");
+const Vend = require("../../models/Vend");
+const Vending = require("../../models/Vending");
 
 
 // @route   POST api/user
@@ -73,20 +75,24 @@ router.post("/", async (req, res) => {
 // @route   GET web/user/me
 // @desc    Get current users
 // @access  Private
-/*
-router.get("/me", auth, async (req, res) => {
+
+router.get("/dash", async (req, res) => {
   try {
-    const user = await User.findById(req.user.id).select("-password");
-    if (!user) {
-      return res.status(400).json({ msg: "There is no user" });
-    }
-    res.json(user);
+    const users = await User.countDocuments()
+    const vendings = await Vending.countDocuments()
+    const vend = await Vend.find()
+    let vends=0
+    vend.forEach(v=>{
+      vends=vends+v.products.length
+    })
+    
+    res.json({users,vendings,vends});
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Server Error");
   }
 });
-*/
+
 // @route   GET web/user/all
 // @desc    get all users
 // @access  Public
