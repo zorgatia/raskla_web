@@ -37,7 +37,7 @@ const Top = props => {
           <div className="card">
             <div className="card-body">
               <div className="text-center m-t-10">
-                <img src="/assets/Plas.png"  style={{width:"3.5em"}}></img>
+                <img src="/assets/plas.png"  style={{width:"3.5em"}}></img>
                 
                 <h2 className="m-t-15 m-b-0">{ load ? ( 0 ) : ( <CountUp end={data.vends} duration={3}></CountUp>) } Bottles</h2>
                 <p className="f-s-12"></p>
