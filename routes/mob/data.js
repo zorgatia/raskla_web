@@ -30,7 +30,7 @@ router.get('/:id',async (req,res)=>{
 // @route   POST mob/data
 // @desc    Send Photo To Data
 // @access  Private
-router.post('/:id',async(req,res)=>{
+router.post('/publish/:id',async(req,res)=>{
     try {
         const {path,product} = req.body
         const user = await User.findById(req.params.id)
@@ -60,9 +60,9 @@ router.post('/:id',async(req,res)=>{
 // @route   PUT mob/data
 // @desc    Vote Data Photo
 // @access  Private
-router.put('/'  ,async(req,res)=>{
+router.post('/vote/:id'  ,async(req,res)=>{
     try {
-        const user = await User.findById(req.body.user)
+        const user = await User.findById(req.params.id)
         if(!user) return res.json("user errur")
 
         const votes = req.body.votes
