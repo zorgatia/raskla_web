@@ -172,7 +172,7 @@ router.delete("/:id",  async (req, res) => {
 // @route   PUT api/user/profile
 // @desc    delete profile ,user & posts
 // @access  Private
-router.put("/:id", async (req, res) => {
+router.post("/profile/:id", async (req, res) => {
   const {
     lastname,
     firstname,
