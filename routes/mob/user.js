@@ -6,6 +6,7 @@ const { check, validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const bcrypt = require("bcryptjs");
+const fetch = require('node-fetch');
 
 
 const auth = require("../../middleware/auth");
@@ -201,33 +202,39 @@ router.post("/profile/:id", async (req, res) => {
     res.status(500).send("server error");
   }
 });
-/*
+
 // @route   PUT api/user/follow
 // @desc    put follow on plage
 // @access  Private
 
-router.put("/follow/:id", auth, async (req, res) => {
+router.post("/image", async (req, res) => {
   try {
-    const plage = await Plage.findById(req.params.id);
-    if (!plage) return res.status(404).json({ msg: "Plage don t found" });
-    // test if user have already followed plage
-    const user = await User.findById(req.user.id);
-    const index = user.follows.map(p => p.id).indexOf(plage.id);
-    if (index !== -1) {
-      user.follows.splice(index, 1);
-      user.save();
-      res.json({ msg: "deleted" });
-    } else {
-      user.follows.unshift(plage);
-      user.save();
-      res.json({ msg: "added" });
-    }
+    let base64Img = req.body.image;
+    //Add your cloud name
+    let apiUrl = "https://api.cloudinary.com/v1_1/dov1qarzt/image/upload";
+    let data = {
+      file: base64Img,
+      upload_preset: "userface",
+    };
+    fetch(apiUrl, {
+      body: JSON.stringify(data),
+      headers: {
+        "content-type": "application/json",
+      },
+      method: "POST",
+    })
+      .then(async (r) => {
+        let data = await r.json();
+        console.log(data.secure_url);
+        return res.json(data.secure_url)
+      })
+      .catch((err) => console.log(err));
   } catch (err) {
     console.log(err.message);
     res.status(500).send("server error");
   }
 });
-
+/*
 // @route   POST web/user/changepassword
 // @desc    change password
 // @access  Private
