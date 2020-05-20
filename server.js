@@ -1,4 +1,5 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const connectDB = require('./config/db')
 const path = require('path')
 
@@ -14,6 +15,9 @@ app.use(function(req,res,next){
 	next();
 })
 app.use(bodyParser({limit: '50MB'}))
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
 app.use('/api/user',require('./routes/api/user'))
 app.use('/api/auth',require('./routes/api/auth'))
 app.use('/api/product',require('./routes/api/product'))
