@@ -15,8 +15,8 @@ app.use(function(req,res,next){
 	next();
 })
 app.use(bodyParser({limit: '50MB'}))
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 
 app.use('/api/user',require('./routes/api/user'))
 app.use('/api/auth',require('./routes/api/auth'))
