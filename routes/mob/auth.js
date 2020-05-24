@@ -66,6 +66,39 @@ router.post('/',[
         
 });
 
+//@route        POST api/auth/fb
+//@desc         Authenticate user & get token
+//@access       Public
+router.post(
+    "/fb",
+    [
+      check("email", "Please include a valid email").isEmail()
+    ],
+    async (req, res) => {
+    
+      
+      const { email } = req.body;
+      console.log(email);
+      
+      try {
+        //See if user exists
+        let user = await User.findOne({ email});
+        if (!user) {
+         user = await new User({email:email , password:"FACEBOOK"}).save()
+        }
+  
+        
+       res.json(user)
+       
+  
+        
+      } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error....");
+      }
+    }
+  );
+
 
 
 module.exports= router;
