@@ -12,7 +12,7 @@ const User = require('../../models/User');
 // @desc    Authenticate user & get token
 // @access  Public
 
-router.get('/',auth,async(req,res)=>{
+router.get('/:id',async(req,res)=>{
     try {
         const user = await User.findById(req.user.id).select('-password');
         res.json(user)
