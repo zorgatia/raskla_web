@@ -35,7 +35,7 @@ router.post('/publish/:id',async(req,res)=>{
         const {path,product} = req.body
         const user = await User.findById(req.params.id)
         let data= await Data.findOne({user:req.params.id},{},{date:1})
-        let minutes = 61
+        /*let minutes = 61
         if(data) {
             const diff = Math.abs(new Date() - new Date(data.date));
             minutes = Math.floor((diff/1000)/60);
@@ -43,7 +43,7 @@ router.post('/publish/:id',async(req,res)=>{
         }
         if(minutes<60){
             return res.json(60-minutes)
-        }
+        }*/
         data=new Data()
         data.user=user
         data.path=path
