@@ -179,9 +179,10 @@ router.post("/profile/:id", async (req, res) => {
     firstname,
     username,
     birthday,
-    state,
+    region,
     gender,
-    image
+    image,
+    phone
   } = req.body;
 
   try {
@@ -191,9 +192,10 @@ router.post("/profile/:id", async (req, res) => {
     user.firstname = firstname;
     user.username = username;
     user.birthday = birthday;
-    user.state = state;
+    user.region = region;
     user.gender = gender;
     user.image = image;
+    user.phone = phone;
 
     await user.save();
     res.json(user);

@@ -26,10 +26,13 @@ const UserSchema = new Schema({
     lastname:{
         type:String
     },
-    state:{
+    region:{
         type:String
     },
     gender:{
+        type:String
+    },
+    phone:{
         type:String
     },
     image:{

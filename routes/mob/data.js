@@ -32,7 +32,7 @@ router.get('/:id',async (req,res)=>{
 // @access  Private
 router.post('/publish/:id',async(req,res)=>{
     try {
-        const {path,product} = req.body
+        const {image,product} = req.body
         const user = await User.findById(req.params.id)
         let data= await Data.findOne({user:req.params.id},{},{date:1})
         /*let minutes = 61
@@ -46,7 +46,7 @@ router.post('/publish/:id',async(req,res)=>{
         }*/
         data=new Data()
         data.user=user
-        data.path=path
+        data.image=image
         data.product=product
         data=await data.save();
         res.json(data)
