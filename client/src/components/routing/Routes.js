@@ -17,6 +17,7 @@ import Buoys from "../buoy/Buoys";
 import EcoSys from '../buoy/EcoSys'
 import Vendings from "../vending/Vendings";
 import Mapp from "../vending/Mapp";
+import { Politic } from "../layout/Politic";
 
 
 
@@ -36,9 +37,9 @@ const Routes = () => {
 
 
                 <PrivateRoute exact path="/map" component={Mapp} />
-                <PrivateRoute exact path="/collaborators" component={Members} />
-                <PrivateRoute exact path="/buoys" component={Buoys} />
-                <PrivateRoute exact path="/ecosys" component={EcoSys} />
+                
+               
+                <PrivateRoute exact path="/politic" component={Politicc} />
                 
                 <Route component={NotFound} />
             </Switch>
