@@ -30,10 +30,10 @@ router.post("/", async (req, res) => {
     const username = email.replace(/@.*$/, "");
     
     user = new User({
-      username,
+     
       email,
       password,
-      comfirmed: false
+      comfirmed: true
     });
 
     const salt = await bcrypt.genSalt(10);
