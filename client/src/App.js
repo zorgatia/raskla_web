@@ -10,6 +10,7 @@ import { loadUser } from "./actions/auth";
 import setAuthToken from "./utils/setAuthToken";
 
 import "./App.css";
+import { Politic } from "./components/layout/Politic";
 
 if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -24,6 +25,7 @@ const App = () => {
             <Router>
                 <Fragment>
                     <Switch>
+                        <Route exact path="/politic" component={Politic} />
                         <Route exact path="/login" component={Login} />
                         <Routes />
                     </Switch>

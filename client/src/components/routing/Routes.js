@@ -39,7 +39,7 @@ const Routes = () => {
                 <PrivateRoute exact path="/map" component={Mapp} />
                 
                
-                <PrivateRoute exact path="/politic" component={Politicc} />
+                
                 
                 <Route component={NotFound} />
             </Switch>
