@@ -19,7 +19,7 @@ router.get('/:id',async (req,res)=>{
         const diff = Math.abs(new Date() - new Date(data.date));
         const minutes = Math.floor((diff/1000)/60);
         return res.json(60-minutes)*/
-        let data = await Data.find({'user':{$ne:req.params.id},'votes.user':{$nin:[req.params.id]}})
+        let data = await Data.find({'user':{$ne:req.params.id},'votes.user':{$nin:[req.params.id]}}).select("_id product image").limit(5)
         return res.json(data)
     } catch (err) {
         console.error(err.message);
