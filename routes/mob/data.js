@@ -62,7 +62,8 @@ router.post('/publish/:id',async(req,res)=>{
 // @access  Private
 router.post('/vote/:id'  ,async(req,res)=>{
     try {
-        const user = await User.findById(req.params.id)
+        let user = await User.findById(req.params.id)
+        user.credit=user.credit+0.25
         if(!user) return res.json("user errur")
 
         const votes = req.body.votes
@@ -75,6 +76,7 @@ router.post('/vote/:id'  ,async(req,res)=>{
                 data.save()
             }
         }); 
+        user=await user.save();
         res.json(user)
 
     } catch (err) {
