@@ -37,7 +37,7 @@ router.post('/',async(req,res)=>{
 router.post("/face", async (req, res) => {
     try {
       const { email, qr } = req.body;
-        console.log(email)
+      console.log(email)
       let user = await User.findOne({email:email})
       let vend = await Vend.findOne({qr:qr})
       if(!user) return res.status(404).json({error:"user not found"})
